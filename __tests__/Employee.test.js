@@ -15,3 +15,9 @@ test("returns general employee info", () => {
   expect(employee.getGeneralInfo()).toHaveProperty("id");
   expect(employee.getGeneralInfo()).toHaveProperty("email");
 });
+
+test("returns employee position", () => {
+    const employee = new Employee("", "", "", "Intern");
+
+    expect(employee.getPosition()).toHaveProperty("position")
+});
