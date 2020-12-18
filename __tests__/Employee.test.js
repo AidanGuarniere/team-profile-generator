@@ -20,4 +20,4 @@ test("returns employee position", () => {
     const employee = new Employee("", "", "", "Intern");
 
     expect(employee.getPosition()).toHaveProperty("position")
-});
+}); 
