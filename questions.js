@@ -7,8 +7,8 @@ promptUser = async () => {
             name: "name",
             message: "What is your name? (Required)",
             // check that user has answered
-            validate: (nameInput_1) => {
-                if (nameInput_1) {
+            validate: (nameInput) => {
+                if (nameInput) {
                     return true;
                 } else {
                     console.log("Please enter your name!");
@@ -21,8 +21,8 @@ promptUser = async () => {
             name: "id",
             message: "What is your ID? (Required)",
             // check that user has answered
-            validate: (idInput_1) => {
-                if (idInput_1) {
+            validate: (idInput) => {
+                if (idInput) {
                     return true;
                 } else {
                     console.log("Please enter your ID!");
@@ -35,8 +35,8 @@ promptUser = async () => {
             name: "email",
             message: "What is your email? (Required)",
             // check that user has answered
-            validate: (emailInput_1) => {
-                if (emailInput_1) {
+            validate: (emailInput) => {
+                if (emailInput) {
                     return true;
                 } else {
                     console.log("Please enter your email!");
@@ -54,8 +54,8 @@ promptUser = async () => {
                 "Manager",
             ],
             // check that user has answered
-            validate: (positionInput_1) => {
-                if (positionInput_1) {
+            validate: (positionInput) => {
+                if (positionInput) {
                     return true;
                 } else {
                     console.log("Please enter your current position!");
