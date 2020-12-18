@@ -13,6 +13,7 @@ test("returns employee name", () => {
 
   expect(employee.getName()).toHaveProperty("name");
 });
+
 test("returns employee id", () => {
   const employee = new Employee("", "1", "", "");
 
