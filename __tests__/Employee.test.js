@@ -8,16 +8,24 @@ test("creates an employee object", () => {
   expect(employee.position).toBe("Intern");
 });
 
-test("returns general employee info", () => {
-  const employee = new Employee("Dave", "1", "dave@davemail.com", "");
+test("returns employee name", () => {
+  const employee = new Employee("Dave", "", "", "");
 
-  expect(employee.getGeneralInfo()).toHaveProperty("name");
-  expect(employee.getGeneralInfo()).toHaveProperty("id");
-  expect(employee.getGeneralInfo()).toHaveProperty("email");
+  expect(employee.getName()).toHaveProperty("name");
+});
+test("returns employee id", () => {
+  const employee = new Employee("", "1", "", "");
+
+  expect(employee.getId()).toHaveProperty("id");
+});
+
+test("returns employee email", () => {
+  const employee = new Employee("", "", "email", "");
+  expect(employee.getEmail()).toHaveProperty("email");
 });
 
 test("returns employee position", () => {
-    const employee = new Employee("", "", "", "Intern");
+  const employee = new Employee("", "", "", "Intern");
 
-    expect(employee.getPosition()).toHaveProperty("position")
-}); 
+  expect(employee.getPosition()).toHaveProperty("position");
+});
