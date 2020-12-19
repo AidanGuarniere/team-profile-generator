@@ -7,19 +7,19 @@ test("creates an Intern object", () => {
     expect(intern.school).toBe("dave university")
   });
 
-//   test("returns Intern Github", () => {
-//     const intern = new Intern("Dave", "1", "dave@davemail.com", "Intern", "dave university");
+  test("returns Intern School", () => {
+    const intern = new Intern("Dave", "1", "dave@davemail.com", "Intern", "dave university");
   
-//     expect(intern.getGithub()).toHaveProperty("github");
-//   });
+    expect(intern.getSchool()).toHaveProperty("school");
+  });
 
-//   test("returns Intern position", () => {
-//     const intern = new Intern("", "", "", "Intern", "dave university");
+  test("returns Intern position", () => {
+    const intern = new Intern("", "", "", "Intern", "dave university");
   
-//     expect(intern.getPosition()).toHaveProperty("position");
+    expect(intern.getPosition()).toHaveProperty("position");
 
-//     expect(intern.position).toBe("Intern")
+    expect(intern.position).toBe("Intern")
 
-//     console.log(intern);
+    console.log(intern);
 
-//   });
+  });
