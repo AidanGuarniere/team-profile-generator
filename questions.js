@@ -1,5 +1,6 @@
 const inquirer = require("inquirer");
 const Employee = require("./lib/employee");
+const Intern = require("./lib/intern");
 promptUser = async () => {
   const { name, id, email, position } = await inquirer.prompt([
         {
@@ -65,7 +66,15 @@ promptUser = async () => {
         },
     ]);
     this.employee = new Employee(name, id, email, position);
-    console.log(this.employee);
+    this.employee.getPosition()
+    if(this.employee.getPosition = 'Intern'){
+        promptIntern()
+    } else if (this.employee.getPosition = 'Engineer'){
+        promptEngineer()
+    } else if (this.employee.getPosition = 'Manager') {
+        promptManager()
+    }
 };
+
 
 promptUser();
