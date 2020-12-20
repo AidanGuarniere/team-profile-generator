@@ -67,14 +67,72 @@ promptUser = async () => {
     ]);
     this.employee = new Employee(name, id, email, position);
     this.employee.getPosition()
-    if(this.employee.getPosition = 'Intern'){
+    if(this.employee.getPosition == {"position": "Intern"}){
         promptIntern()
-    } else if (this.employee.getPosition = 'Engineer'){
+    } else if (this.employee.getPosition == {"position": "Engineer"}){
         promptEngineer()
-    } else if (this.employee.getPosition = 'Manager') {
+    } else if (this.employee.getPosition == {"position": "Manager"}) {
         promptManager()
     }
 };
+promptIntern = async () => {
+    const { name, id, email, position, school } = await inquirer.prompt([
+        {
+            type: "input",
+            name: "school",
+            message: "What is your school? (Required)",
+            // check that user has answered
+            validate: (schoolInput) => {
+                if (schoolInput) {
+                    return true;
+                } else {
+                    console.log("Please enter your school!");
+                    return false;
+                }
+            },
+        },
+    ])
+    this.intern = new Intern(name, id, email, position, school)
+}
 
+promptEngineer = async () => {
+    const { name, id, email, position, github } = await inquirer.prompt([
+        {
+            type: "input",
+            name: "github",
+            message: "What is your GitHub username? (Required)",
+            // check that user has answered
+            validate: (githubInput) => {
+                if (githubInput) {
+                    return true;
+                } else {
+                    console.log("Please enter your GitHub username!");
+                    return false;
+                }
+            },
+        },
+    ])
+    this.engineer = new Engineer(name, id, email, position, github)
+}
+
+promptManager = async () => {
+    const { name, id, email, position, school } = await inquirer.prompt([
+        {
+            type: "input",
+            name: "school",
+            message: "What is your school? (Required)",
+            // check that user has answered
+            validate: (schoolInput) => {
+                if (schoolInput) {
+                    return true;
+                } else {
+                    console.log("Please enter your school!");
+                    return false;
+                }
+            },
+        },
+    ])
+    this.intern = new Intern(name, id, email, position, school)
+}
 
 promptUser();
