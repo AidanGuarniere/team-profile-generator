@@ -3,7 +3,7 @@ const Employee = require("./lib/employee");
 const Intern = require("./lib/intern");
 const Engineer = require("./lib/engineer");
 const Manager = require("./lib/manager");
-const generateUser = require("./generate-user");
+const generateUser = require("./src/generate-user");
 
 promptUser = async (currentEmployees) => {
   if (currentEmployees === undefined) {
