@@ -3,14 +3,17 @@ const Employee = require("./lib/employee");
 const Intern = require("./lib/intern");
 const Engineer = require("./lib/engineer");
 const Manager = require("./lib/manager");
+const generateUser = require("./generate-user");
 
-promptUser = async () => {
+promptUser = async (currentEmployees) => {
+  if (currentEmployees === undefined) {
+    currentEmployees = [];
+  }
   const { name, id, email, position } = await inquirer.prompt([
     {
       type: "input",
       name: "name",
       message: "What is your name? (Required)",
-      // check that user has answered
       validate: (nameInput) => {
         if (nameInput) {
           return true;
@@ -24,7 +27,6 @@ promptUser = async () => {
       type: "input",
       name: "id",
       message: "What is your ID? (Required)",
-      // check that user has answered
       validate: (idInput) => {
         if (idInput) {
           return true;
@@ -38,7 +40,6 @@ promptUser = async () => {
       type: "input",
       name: "email",
       message: "What is your email? (Required)",
-      // check that user has answered
       validate: (emailInput) => {
         if (emailInput) {
           return true;
@@ -53,7 +54,6 @@ promptUser = async () => {
       name: "position",
       message: "What is your current position? (Required)",
       choices: ["Intern", "Engineer", "Manager"],
-      // check that user has answered
       validate: (positionInput) => {
         if (positionInput) {
           return true;
@@ -66,20 +66,19 @@ promptUser = async () => {
   ]);
   this.employee = new Employee(name, id, email, position);
   if (this.employee.position === "Intern") {
-    promptIntern(this.employee);
+    promptIntern(this.employee, currentEmployees);
   } else if (this.employee.position === "Engineer") {
-    promptEngineer(this.employee);
+    promptEngineer(this.employee, currentEmployees);
   } else if (this.employee.position === "Manager") {
-    promptManager(this.employee);
+    promptManager(this.employee, currentEmployees);
   }
 };
-promptIntern = async (employee) => {
+promptIntern = async (employee, currentEmployees) => {
   const { school } = await inquirer.prompt([
     {
       type: "input",
       name: "school",
       message: "What is your school? (Required)",
-      // check that user has answered
       validate: (schoolInput) => {
         if (schoolInput) {
           return true;
@@ -97,16 +96,22 @@ promptIntern = async (employee) => {
     employee.position,
     school
   );
-  console.log(this.intern);
+  addEmployee(this.intern, currentEmployees).then((data) => {
+    if (data.addUser === true) {
+      promptUser(currentEmployees);
+      console.log(currentEmployees);
+    } else {
+      generateUser(currentEmployees);
+    }
+  });
 };
 
-promptEngineer = async (employee) => {
+promptEngineer = async (employee, currentEmployees) => {
   const { github } = await inquirer.prompt([
     {
       type: "input",
       name: "github",
       message: "What is your GitHub username? (Required)",
-      // check that user has answered
       validate: (githubInput) => {
         if (githubInput) {
           return true;
@@ -124,16 +129,22 @@ promptEngineer = async (employee) => {
     employee.position,
     github
   );
-  console.log(this.engineer);
+  addEmployee(this.engineer, currentEmployees).then((data) => {
+    if (data.addUser === true) {
+      promptUser(currentEmployees);
+      console.log(currentEmployees);
+    } else {
+      generateUser(currentEmployees);
+    }
+  });
 };
 
-promptManager = async (employee) => {
+promptManager = async (employee, currentEmployees) => {
   const { office } = await inquirer.prompt([
     {
       type: "input",
       name: "office",
       message: "What is your office number? (Required)",
-      // check that user has answered
       validate: (officeInput) => {
         if (officeInput) {
           return true;
@@ -151,7 +162,27 @@ promptManager = async (employee) => {
     employee.position,
     office
   );
-  console.log(this.manager);
+  addEmployee(this.manager, currentEmployees).then((data) => {
+    if (data.addUser === true) {
+      promptUser(currentEmployees);
+      console.log(currentEmployees);
+    } else {
+      generateUser(currentEmployees);
+    }
+  });
+};
+
+addEmployee = async (employee, currentEmployees) => {
+  currentEmployees.push(employee);
+  console.log(currentEmployees);
+  return inquirer.prompt([
+    {
+      type: "confirm",
+      name: "addUser",
+      message: "Do you want to add another employee?",
+      default: false,
+    },
+  ]);
 };
 
 promptUser();
